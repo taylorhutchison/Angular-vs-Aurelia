@@ -8,7 +8,7 @@
                        should NOT display any of "The Three Stooges"
   -->
   <input type="text" class="form-control" placeholder="Enter Name..."
-         (input)='filterComedians($event.target.value)'>
+         [(ngModel)]="searchText">
 
 </div>
 <table class='table'>
@@ -22,7 +22,7 @@
     TODO: dynamically populate the table with the data from the "dataService"
           as instructed below...
   -->
-  <tr *ngFor="let comedian of comedians">
+  <tr *ngFor="let comedian of comedians | fullNameFilter:searchText">
     <td> {{ comedian.fullName }} </td>
     <td> {{ comedian.group.name }} </td>
     <td><a target='_new'
