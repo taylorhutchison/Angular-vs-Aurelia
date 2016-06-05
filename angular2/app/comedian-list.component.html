@@ -1,0 +1,31 @@
+<div class="input-group">
+  <span class="input-group-addon">Filter By Name</span>
+
+  <!--
+    TODO: Make this textbox a filter by comedian name.
+          It should *Only* filter over the comedian's name and no other property
+          For example: entering "ge" should only display "George Burns" and
+                       should NOT display any of "The Three Stooges"
+  -->
+  <input type="text" class="form-control" placeholder="Enter Name..."
+         (input)='filterComedians($event.target.value)'>
+
+</div>
+<table class='table'>
+  <tr>
+    <th>Name</th>
+    <th>Group</th>
+    <th>More Info...</th>
+  </tr>
+
+  <!--
+    TODO: dynamically populate the table with the data from the "dataService"
+          as instructed below...
+  -->
+  <tr *ngFor="let comedian of comedians">
+    <td> {{ comedian.fullName }} </td>
+    <td> {{ comedian.group.name }} </td>
+    <td><a target='_new'
+        [href]='comedian.url'>{{ comedian.url }}</a></td>
+  </tr>
+</table>

@@ -1,0 +1,62 @@
+<html ng-app='comedians'>
+<head>
+  <title>Classic Funny People</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar navbar-default">
+    <div class='container'>
+      <h1>Classic Funny People</h1>
+    </div>
+  </div>
+  <!-- TODO: Associate the "mainController" with this div -->
+  <div class='container' ng-controller='mainController as vm'>
+
+    <div class="input-group">
+      <span class="input-group-addon">Filter By Name</span>
+
+      <!--
+        TODO: Make this textbox a filter by comedian name.
+              It should *Only* filter over the comedian's name and no other property
+              For example: entering "ge" should only display "George Burns" and
+                           should NOT display any of "The Three Stooges"
+      -->
+      <input type="text" class="form-control" placeholder="Enter Name..."
+             ng-model='vm.filterText.name'>
+
+    </div>
+    <table class='table'>
+      <tr>
+        <th>Name</th>
+        <th>Group</th>
+        <th>More Info...</th>
+      </tr>
+
+      <!--
+        TODO: dynamically populate the table with the data from the "dataService"
+              as instructed below...
+      -->
+      <tr>
+        <td><!-- TODO: Comedian's name goes here (first and last in one field) --></td>
+        <td><!-- TODO: Group name goes here --></td>
+        <td><!-- TODO: Clickable link to the comedian's url goes here --></td>
+      </tr>
+      <tr ng-repeat='person in vm.comedians | filter:vm.filterText:strict'>
+        <td> {{ person.name }} </td>
+        <td> {{ person.group }} </td>
+        <td><a target='_new' ng-href='{{ person.url }}'>{{ person.url }}</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <script src='https://opensource.keycdn.com/angularjs/1.5.3/angular.min.js'></script>
+  <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!--
+    TODO: put your javascript code in the app.js file
+    (you may use additional *.js files if you wish, but it is not necessary
+  -->
+  <script src="app.js"></script>
+</body>
+</html>

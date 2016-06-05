@@ -1,0 +1,46 @@
+<template>
+  <require from="bootstrap/css/bootstrap.css"></require>
+  <require from="font-awesome/css/font-awesome.css"></require>
+
+  <div class="navbar navbar-default">
+    <div class='container'>
+      <h1>Classic Funny People</h1>
+    </div>
+  </div>
+  <!-- TODO: Associate the "mainController" with this div -->
+  <div class='container'>
+
+    <div class="input-group">
+      <span class="input-group-addon">Filter By Name</span>
+
+      <!--
+        TODO: Make this textbox a filter by comedian name.
+              It should *Only* filter over the comedian's name and no other property
+              For example: entering "ge" should only display "George Burns" and
+                           should NOT display any of "The Three Stooges"
+      -->
+      <input type="text" class="form-control" placeholder="Enter Name..."
+             value.bind='filterText' keyup.trigger='filterComedian(filterText)'>
+
+    </div>
+    <table class='table'>
+      <tr>
+        <th>Name</th>
+        <th>Group</th>
+        <th>More Info...</th>
+      </tr>
+
+      <!--
+        TODO: dynamically populate the table with the data from the "dataService"
+              as instructed below...
+      -->
+      <tr repeat.for='comedian of comedians'>
+        <td> ${ comedian.fullName } </td>
+        <td> ${ comedian.group.name } </td>
+        <td><a target='_new'
+            href.bind='comedian.url'>${ comedian.url }</a></td>
+      </tr>
+    </table>
+  </div>
+
+</template>
