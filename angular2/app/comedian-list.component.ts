@@ -1,18 +1,28 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+
 import { Comedian } from './models';
 import { DataService } from './services';
-import {FullNameFilter} from './pipes';
 
 @Component({
   selector: 'comedian-list',
   templateUrl: 'app/comedian-list.component.html',
-  providers: [DataService],
-  pipes: [FullNameFilter]
+  providers: [DataService]
 })
-export class ComedianListComponent {
+export class ComedianListComponent implements OnInit {
   comedians: Comedian[];
-  searchText: string = "";
-  constructor(private dataService: DataService) { 
+
+  constructor(private dataService: DataService) { }
+
+  filterComedians(filterText: string) {
+    let lowerFilterText = filterText.toLowerCase();
+
+    this.comedians =
+      this.dataService.getComeidans()
+        .filter(c => c.fullName.toLowerCase().includes(lowerFilterText));
+  }
+
+  ngOnInit() {
     this.comedians = this.dataService.getComeidans();
   }
 }
