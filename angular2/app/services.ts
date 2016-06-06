@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
+import * as Rx from 'rxjs/Rx';
 import { Comedian, Group } from './models';
 
 @Injectable()
 export class DataService {
+  private comedians;
+  private comedianObserver;
+  constructor(){
+    this.comedians = Rx.Observable.empty();
+  }
+  
   getGroups() : Group[] {
     return [{
       id: 1,
@@ -18,9 +25,9 @@ export class DataService {
       name: 'The Three Stooges'
     }];
   }
-
-  getComeidans() : Comedian[] {
-    let commedians = [
+  
+  createComedians(){
+    let list = [
       new Comedian (
         'Groucho', 'Marx', 1,
         'https://en.wikipedia.org/wiki/Groucho_Marx'
@@ -55,10 +62,22 @@ export class DataService {
          'Larry', 'Fine', 4,
          'https://en.wikipedia.org/wiki/Larry_Fine'
       )];
-    for (let c of commedians) {
+    for (let c of list) {
       c.group = this.getGroupById(c.groupId);
     }
-    return commedians;
+    return list;
+  }
+
+  getComedians() {
+    var self = this;
+    this.comedians = Rx.Observable.create(observer => this.comedianObserver = observer);
+    let _comedians = this.createComedians();
+    for(let comedian of _comedians){
+      setTimeout(function(){
+        self.comedianObserver.next(comedian);
+      },1000*Math.random()+1000);
+    }
+    return this.comedians;
   }
 
   private getGroupById(id: number) {

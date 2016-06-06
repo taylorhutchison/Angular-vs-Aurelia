@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-
 import { Comedian } from './models';
 import { DataService } from './services';
 
@@ -10,19 +9,28 @@ import { DataService } from './services';
   providers: [DataService]
 })
 export class ComedianListComponent implements OnInit {
-  comedians: Comedian[];
-
+  comedians: Comedian[] = [];
   constructor(private dataService: DataService) { }
 
   filterComedians(filterText: string) {
+    this.comedians = [];
     let lowerFilterText = filterText.toLowerCase();
-
-    this.comedians =
-      this.dataService.getComeidans()
-        .filter(c => c.fullName.toLowerCase().includes(lowerFilterText));
+    this.dataService.getComedians().subscribe(
+      comedian => {
+        if(comedian.fullName.toLowerCase().includes(lowerFilterText)){
+          this.comedians.push(comedian);
+        }
+      },
+      error => console.log(error)
+    );
   }
 
   ngOnInit() {
-    this.comedians = this.dataService.getComeidans();
+    this.dataService.getComedians().subscribe(
+      comedians => {
+         this.comedians.push(comedians);
+      },
+      error => console.log(error)
+    )
   }
 }
