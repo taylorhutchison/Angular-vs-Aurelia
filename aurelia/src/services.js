@@ -16,14 +16,7 @@ export class DataService {
   }
 
   getComedian(id) {
-    let comedians = this.getComedians();
-    var comediansFiltered = comedians.filter( f => f.id==id );
-    if(comediansFiltered.length > 0){
-      return comediansFiltered[0];
-    }
-    else {
-      return {};
-    }
+    return this.getComedians().find( f => f.id == id );
   }
 
   getComedians() {
