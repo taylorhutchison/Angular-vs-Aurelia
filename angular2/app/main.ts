@@ -1,4 +1,5 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ComedianListComponent } from './comedian-list.component';
+import { AppComponent } from './app.component';
+import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-bootstrap(ComedianListComponent);
+bootstrap(AppComponent, [ROUTER_PROVIDERS]);
