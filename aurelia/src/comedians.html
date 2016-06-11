@@ -1,0 +1,32 @@
+<template>
+    <div class="input-group">
+      <span class="input-group-addon">Filter By Name</span>
+
+      <!--
+        TODO: Make this textbox a filter by comedian name.
+              It should *Only* filter over the comedian's name and no other property
+              For example: entering "ge" should only display "George Burns" and
+                           should NOT display any of "The Three Stooges"
+      -->
+      <input type="text" class="form-control" placeholder="Enter Name..."
+             value.bind='filterText' keyup.trigger='filterComedian(filterText)'>
+
+    </div>
+    <table class='table'>
+        <tr>
+            <th>Name</th>
+            <th>Group</th>
+            <th>More Info...</th>
+        </tr>
+
+        <!--
+        TODO: dynamically populate the table with the data from the "dataService"
+              as instructed below...
+      -->
+        <tr repeat.for='comedian of comedians'>
+            <td><a href="#/comedians/${comedian.id}/detail">${ comedian.fullName }</a></td>
+            <td> ${ comedian.group.name } </td>
+            <td><a target='_new' href.bind='comedian.url'>${ comedian.url }</a></td>
+        </tr>
+    </table>
+</template>
