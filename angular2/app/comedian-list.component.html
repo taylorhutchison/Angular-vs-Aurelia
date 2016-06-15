@@ -23,7 +23,9 @@
           as instructed below...
   -->
   <tr *ngFor="let comedian of comedians">
-    <td> {{ comedian.fullName }} </td>
+    <td>
+      <a href="/details/{{comedian.id}}">{{ comedian.fullName }}</a> 
+    </td>
     <td> {{ comedian.group.name }} </td>
     <td><a target='_new'
         [href]='comedian.url'>{{ comedian.url }}</a></td>

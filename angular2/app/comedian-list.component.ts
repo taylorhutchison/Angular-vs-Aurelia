@@ -11,6 +11,7 @@ import { DataService } from './services';
 })
 export class ComedianListComponent implements OnInit {
   comedians: Comedian[];
+  private allComedians: Comedian[];
 
   constructor(private dataService: DataService) { }
 
@@ -18,11 +19,14 @@ export class ComedianListComponent implements OnInit {
     let lowerFilterText = filterText.toLowerCase();
 
     this.comedians =
-      this.dataService.getComeidans()
+      this.allComedians
         .filter(c => c.fullName.toLowerCase().includes(lowerFilterText));
   }
 
   ngOnInit() {
-    this.comedians = this.dataService.getComeidans();
+    this.dataService.getComeidans().then(c => {
+      this.allComedians = c;
+      this.comedians = this.allComedians;
+    });
   }
 }

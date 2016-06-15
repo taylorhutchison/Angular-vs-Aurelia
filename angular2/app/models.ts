@@ -9,7 +9,8 @@ export class Comedian {
     public firstName: string,
     public lastName: string,
     public groupId: number,
-    public url: string) { }
+    public url: string,
+    public id: number) { }
 
   get fullName() {
     return `${this.firstName} ${this.lastName}`;
