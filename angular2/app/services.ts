@@ -73,7 +73,7 @@ export class DataService {
     }
 
     return new Promise((res, rej) => {
-      setTimeout(() => res(commedians), 2000)
+      setTimeout(() => res(commedians), 1000)
     });
   }
 
@@ -81,7 +81,7 @@ export class DataService {
     let comedian = this.comedians.find(c => c.id == id);
     comedian.group = this.getGroupById(comedian.groupId);
     return new Promise((res, rej) => {
-      setTimeout(() => res(comedian), 2000);
+      setTimeout(() => res(comedian), 1000);
     })
   }
 

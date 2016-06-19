@@ -24,7 +24,7 @@
   -->
   <tr *ngFor="let comedian of comedians">
     <td>
-      <a href="/details/{{comedian.id}}">{{ comedian.fullName }}</a> 
+      <a [routerLink]="['/details',comedian.id]">{{ comedian.fullName }}</a> 
     </td>
     <td> {{ comedian.group.name }} </td>
     <td><a target='_new'

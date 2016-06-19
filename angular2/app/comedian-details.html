@@ -1,8 +1,11 @@
+<div *ngIf="!comedian">
+    <h2>Loading Comedian...</h2>
+</div>
 <div *ngIf="comedian">
     <h1>{{comedian.fullName}}</h1>
     <h3>{{comedian.group.name}}</h3>
     <h3>
         <a href="{{comedian.url}}">{{comedian.url}}</a>
     </h3>
-    <a href="/">Back to list</a>
+    <a [routerLink]="['/']">Back to list</a>
 </div>

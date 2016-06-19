@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-
+import {ROUTER_DIRECTIVES} from '@angular/router';
 import { Comedian } from './models';
 import { DataService } from './services';
 
 @Component({
   selector: 'comedian-list',
   templateUrl: 'app/comedian-list.component.html',
-  providers: [DataService]
+  providers: [DataService],
+  directives: [ROUTER_DIRECTIVES]
 })
 export class ComedianListComponent implements OnInit {
   comedians: Comedian[];
